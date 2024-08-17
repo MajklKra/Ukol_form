@@ -19,7 +19,7 @@ function App() {
   const [mem1, setMem1] = useState(0)
   const [additives, setAd] = useState("vanilkova")
   const creams = ["smetanova", "jogurtova", "nizkotucna"]
-  const [cream, setCreams] = useState("smetanova")
+  const [cream, setCream] = useState("smetanova")
   const [amount, setAmount] = useState(66)
   const [checkboxes,setCheckboxes] = useState([])
   const [scoops, setScoops] = useState(1)
@@ -86,7 +86,7 @@ function App() {
       }
 
       case "sel-creams": {
-        setCreams(data)
+        setCream(data)
         break
       }
 
@@ -176,7 +176,7 @@ function App() {
           <div className="col-6">
            
            <p>
-              {additives}, {scoops} kopecky, {checkboxes}
+              {additives}, {scoops} kopecky, {checkboxes}, {cream}
             </p>
 
             <RbGroup
