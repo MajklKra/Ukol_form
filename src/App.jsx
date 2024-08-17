@@ -7,6 +7,12 @@ import ChbGroup from "./components/ChbGroup"
 import Select from "./components/Select"
 import Range from "./components/Range"
 import Clock from "./components/Clock"
+import ProgressBar from "./components/ProgressBar"
+import TextBox from "./components/TextBox"
+import Button from "./components/Button"
+import TextArea from "./components/TextArea"
+import File from "./components/File"
+import saveText from "./functions/saveText"
 
 function App() {
 
@@ -17,9 +23,19 @@ function App() {
   const [amount, setAmount] = useState(66)
   const [checkboxes,setCheckboxes] = useState([])
   const [scoops, setScoops] = useState(0)
+  const [initialCountDown, setInitialCountDown] = useState(10)
+  const [countDown, setCountDown] = useState(10)
+  const [text1, setText1] = useState(10)
+  const [text2, setText2] = useState(0)
+  const [addition,setAddition] = useState(0)
+  const [text, setText] = useState("")
 
 
-  useEffect(() => 
+  const [s, setS] = useState("nevim")
+  
+
+
+/*   useEffect(() => 
   {
     let temp = prompt("Zadejte cislo float", 10)
     while (!validateFloat(temp)) 
@@ -27,7 +43,28 @@ function App() {
       temp = prompt("Zadejte cislo float", 10)
     }
     setMem1(temp);
-  }, [])
+    setText1(temp);
+  }, []) */
+  
+    useEffect(() => {
+      if (countDown > 0) {
+        const timer = setInterval(() => {
+          setCountDown(countDown - 1)
+        }, 1000)
+        return () => clearInterval(timer)
+      }
+    }, [countDown])
+  
+    const progress =
+      countDown > 0
+        ? ((initialCountDown - countDown) / initialCountDown) * 100
+        : 100 
+
+
+
+       const soucet = text1.value + text2.valueů  
+
+
 
   const handleData = (data, source) => {
     switch (source) {
@@ -56,6 +93,21 @@ function App() {
         setAmount(data)
         break
       }
+
+      case "tbx-2": {
+        setText2(data)
+        break
+      }
+
+      case "txa-text": {
+        setText(data)
+        break
+      }
+
+      case "file-load": {
+        setText(data)
+        break
+      }
    
       
       default:
@@ -63,8 +115,26 @@ function App() {
     }
   }
 
-  console.log(checkboxes)
+  
+  const handleEvent = (source) => {
+    switch (source) {
+       case "btn-Addition":
+        {
+          setAddition()
+          break;
+        }
 
+        case "btn-download": {
+          saveText(text)
+          break
+        }
+
+      default:
+        break
+    }
+  } 
+
+  
   return (
     
     <div className="bg-info-subtle vw-100 vh-100">
@@ -133,7 +203,65 @@ function App() {
           <div className="col-6">
           
             <h1>Fuck you motherfucker2</h1>
-          
+
+            <ProgressBar id="pgb-progress" dataIn={progress} />
+            <p>Instalace probiha {countDown} s </p>
+
+            <div className="row">
+              <div className="col-3">{
+                <TextBox    
+                  label="scitanec 1"
+                  dataIn={text1}
+                  id="tbx-1"         
+                />}
+              </div>
+              <div className="col-3">
+                <TextBox    
+                    label="scitanec 2"
+                    dataIn={text2}
+                    id="tbx-2"
+                    handleData={handleData}            
+                  />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-3">
+                <Button
+                  id="btn-Addition"
+                  label="Vypocitej soucet"
+                  handleEvent={handleEvent} 
+                ></Button>
+              </div>
+              <div className="col-3">
+               <p>soucet je {soucet}</p> 
+              </div>
+            </div>
+
+            <TextArea
+              id="txa-text"
+              label="Operace s textem"
+              dataIn={text}
+              handleData={handleData}
+              height={150}
+            />
+
+            <div className="row">
+              <div className="col-6">
+                <File
+                  id="file-load"
+                  label="Nacti text ze souboru"
+                  handleData={handleData}
+                />
+              </div>
+              <div className="col-6">
+                <Button
+                  id="btn-download"
+                  label="Stahni soubor s textem"
+                  handleEvent={handleEvent}
+                ></Button>
+              </div>
+            </div>
+       
           </div>
 
         </div>
