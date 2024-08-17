@@ -18,8 +18,8 @@ function App() {
 
   const [mem1, setMem1] = useState(0)
   const [additives, setAd] = useState("vanilkova")
-  const creams = ["smetanova", "jogurtova", "nizkotucna"]
-  const [cream, setCream] = useState("smetanova")
+  const creams = ["smetanová", "jogurtová", "nízkotučná"]
+  const [cream, setCream] = useState("smetanová")
   const [amount, setAmount] = useState(66)
   const [checkboxes,setCheckboxes] = useState([])
   const [scoops, setScoops] = useState(1)
@@ -36,7 +36,7 @@ function App() {
   
 
 
-/*   useEffect(() => 
+   useEffect(() => 
   {
     let temp = prompt("Zadejte cislo float", 10)
     while (!validateFloat(temp)) 
@@ -45,7 +45,7 @@ function App() {
     }
     setMem1(temp);
     setText1(temp);
-  }, []) */
+  }, []) 
   
     useEffect(() => {
       if (countDown > 0) {
@@ -155,7 +155,7 @@ function App() {
 
     if (!validateFloat(text1) || !validateFloat(text2)) {
       alert("Prosím zadejte platné číslo.");
-      setS("Zadejte validni scitance a zmacknete tlacitko vypoctu.")
+      setS("Zadejte validní sčítance a zmačkněte tlačítko výpočtu.")
       return;
     }
 
@@ -170,48 +170,48 @@ function App() {
   
   return (
     
-    <div className="bg-info-subtle vw-100 vh-100">
-      <div className="container bg-warning-subtle">
-        <div className="row p-4">
+    <div className="bg-info-subtle vw-100 vh-100" id="d1">
+      <div className="container bg-warning-subtle" id ="d2">
+        <div className="row p-4" id ="d3">
           <div className="col-6">
            
            <p>
-              {additives}, {scoops} kopecky, {checkboxes}, {cream}
+              {additives} {checkboxes} {scoops} kopečky {cream}
             </p>
 
             <RbGroup
-              label="prichut zmrzliny"
+              label="přichuť zmrzliny"
               id="rbg-creams"
               selectedValue={additives}
               handleData={handleData}
               dataIn={[
-                { label: "vanilkova", value: "vanilkova" },
-                { label: "cokoladova", value: "cokoladova" },
-                { label: "michana", value: "michana" },
+                { label: "vanilková", value: "vanilková" },
+                { label: "čokoladová", value: "čokoladová" },
+                { label: "míchaná", value: "míchaná" },
               ]}
             />
-
+            <br />
             <ChbGroup
-              label="Neco navrch"
+              label="Něco navrch?"
               id = "ch-checkboxes"
               dataIn ={[
-                {label: "kousky orisku", value:"kousky orisku "},
-                {label: "coko hoblinky", value:"coko hoblinky "},
-                {label: "karamelove krupinky", value:"karamelove krupinky "},
+                {label: "kousky oříšků", value:"s kousky oříšků "},
+                {label: "čoko hoblinky", value:"s čoko hoblinky "},
+                {label: "karamelové křupinky", value:"s karamelové křupinky "},
               ]}
               selectedValue={checkboxes}
               handleData={handleData}
             />
-
-              <div className="col-6">
+            <br />
+              <div className="col-12">
                 <NumImp
-                  label="Pocet kopecku (max. 4)"
+                  label="Počet kopečků (max. 4)"
                   dataIn={scoops}
                   id="number-Scoops"
                   handleData={handleData} 
                 />
               </div>
-
+               <br /> 
               <Select
               dataIn={creams}
               selectedValue={cream}
@@ -219,7 +219,7 @@ function App() {
               id="sel-creams"
               handleData={handleData}
             ></Select>
-
+            <br />
             <Range
               id="rng-amount"
               label="Misto na disku"
@@ -229,51 +229,49 @@ function App() {
               handleData={handleData}
             />
           
-          <Clock  />  , zbyva {amount} % na disku
+          <Clock  />  , zbývá {amount} % na disku
           </div>
-
 
           <div className="col-6">
           
-            <h1>Fuck you motherfucker2</h1>
-
             <ProgressBar id="pgb-progress" dataIn={progress} />
-            <p>Instalace probiha {countDown} s </p>
+            <p>Instalace probíhá, čekejte {countDown} sekund </p>
 
             <div className="row">
-              <div className="col-3">{
+              <div className="col-6">{
                 <TextBox    
-                  label="scitanec 1"
+                  label="sčítanec 1"
                   dataIn={text1}
                   id="tbx-1" 
                   handleData={handleData}          
                 />}
               </div>
-              <div className="col-3">
+              <div className="col-6">
                 <TextBox    
-                    label="scitanec 2"
+                    label="sčítanec 2"
                     dataIn={text2}
                     id="tbx-2"
                     handleData={handleData}            
                   />
               </div>
             </div>
+            <br />
             <div className="row">
-              <div className="col-3">
+              <div className="col-6">
                 {/* <Button
                   id="btn-Addition"
                   label="Vypocitej soucet"
                   handleEvent={handleEvent} 
                 ></Button> */}
 
-              <button onClick={handleSum}>Spočítat součet</button>
+              <button onClick={handleSum}>Vypočítej součet</button>
 
               </div>
-              <div className="col-3">
-               <p> {s} </p> 
+              <div className="col-6">
+               <p><b> {s} </b></p> 
               </div>
             </div>
-
+            <br />
             <TextArea
               id="txa-text"
               label="Operace s textem"
@@ -281,12 +279,12 @@ function App() {
               handleData={handleData}
               height={150}
             />
-
+            <br />
             <div className="row">
               <div className="col-6">
                 <File
                   id="file-load"
-                  label="Nacti text ze souboru"
+                  label="Načti text ze souboru"
                   handleData={handleData}
                 />
               </div>
