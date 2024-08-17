@@ -94,6 +94,11 @@ function App() {
         break
       }
 
+      case "tbx-1": {
+        setText1(data)
+        break
+      }
+
       case "tbx-2": {
         setText2(data)
         break
@@ -212,7 +217,8 @@ function App() {
                 <TextBox    
                   label="scitanec 1"
                   dataIn={text1}
-                  id="tbx-1"         
+                  id="tbx-1" 
+                  handleData={handleData}          
                 />}
               </div>
               <div className="col-3">
