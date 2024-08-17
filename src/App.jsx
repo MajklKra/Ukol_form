@@ -31,7 +31,7 @@ function App() {
   const [text, setText] = useState("")
 
 
-  const [s, setS] = useState("nevim")
+  const [s, setS] = useState("")
   const [result, setResult] = useState(null);
   
 
@@ -141,7 +141,9 @@ function App() {
     }
   } 
 
-  const handleSum = () => {
+  const handleSum = () => 
+    {
+
     const num1 = parseFloat(text1);
     const num2 = parseFloat(text2);
 
