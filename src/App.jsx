@@ -22,7 +22,7 @@ function App() {
   const [cream, setCreams] = useState("smetanova")
   const [amount, setAmount] = useState(66)
   const [checkboxes,setCheckboxes] = useState([])
-  const [scoops, setScoops] = useState(0)
+  const [scoops, setScoops] = useState(1)
   const [initialCountDown, setInitialCountDown] = useState(10)
   const [countDown, setCountDown] = useState(10)
   const [text1, setText1] = useState(10)

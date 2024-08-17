@@ -16,6 +16,8 @@ function NumImp({ dataIn, label, handleData, id }) {
         value={dataIn}
         id={id}
         onChange={handleChange}
+        min="1"
+        max="4"
       />
     </>
   );
