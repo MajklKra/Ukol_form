@@ -32,6 +32,7 @@ function App() {
 
 
   const [s, setS] = useState("nevim")
+  const [result, setResult] = useState(null);
   
 
 
@@ -125,7 +126,8 @@ function App() {
     switch (source) {
        case "btn-Addition":
         {
-          setAddition()
+          
+          /* setAddition() */
           break;
         }
 
@@ -138,6 +140,30 @@ function App() {
         break
     }
   } 
+
+  const handleSum = () => {
+    const num1 = parseFloat(text1);
+    const num2 = parseFloat(text2);
+
+   /*  if (isNaN(num1) || isNaN(num2)) {
+      alert("Prosím zadejte platné číslo.");
+      setS("Zadejte validni scitance a zmacknete tlacitko vypoctu.")
+      return;
+    } */
+
+    if (!validateFloat(text1) || !validateFloat(text2)) {
+      alert("Prosím zadejte platné číslo.");
+      setS("Zadejte validni scitance a zmacknete tlacitko vypoctu.")
+      return;
+    }
+
+
+    /* setResult(num1 + num2); */
+
+    const sum = num1 + num2;
+    /* setResult(sum); */
+    setS("Součet je: " + sum.toString())
+  };
 
   
   return (
@@ -232,14 +258,17 @@ function App() {
             </div>
             <div className="row">
               <div className="col-3">
-                <Button
+                {/* <Button
                   id="btn-Addition"
                   label="Vypocitej soucet"
                   handleEvent={handleEvent} 
-                ></Button>
+                ></Button> */}
+
+              <button onClick={handleSum}>Spočítat součet</button>
+
               </div>
               <div className="col-3">
-               <p>soucet je {soucet}</p> 
+               <p> {s} </p> 
               </div>
             </div>
 
