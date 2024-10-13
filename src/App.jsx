@@ -17,7 +17,7 @@ import saveText from "./functions/saveText"
 function App() {
 
   const [mem1, setMem1] = useState(0)
-  const [additives, setAd] = useState("vanilkova")
+  const [additives, setAd] = useState("vanilková")
   const creams = ["smetanová", "jogurtová", "nízkotučná"]
   const [cream, setCream] = useState("smetanová")
   const [amount, setAmount] = useState(66)
@@ -30,22 +30,19 @@ function App() {
   const [addition,setAddition] = useState(0)
   const [text, setText] = useState("")
 
-
   const [s, setS] = useState("")
   const [result, setResult] = useState(null);
-  
-
 
    useEffect(() => 
-  {
-    let temp = prompt("Zadejte cislo float", 10)
-    while (!validateFloat(temp)) 
     {
-      temp = prompt("Zadejte cislo float", 10)
-    }
-    setMem1(temp);
-    setText1(temp);
-  }, []) 
+      let temp = prompt("Zadejte cislo float", 10)
+      while (!validateFloat(temp)) 
+      {
+        temp = prompt("Zadejte cislo float", 10)
+      }
+      setMem1(temp);
+      setText1(temp);
+    }, []) 
   
     useEffect(() => {
       if (countDown > 0) {
@@ -61,11 +58,7 @@ function App() {
         ? ((initialCountDown - countDown) / initialCountDown) * 100
         : 100 
 
-
-
        const soucet = text1.value + text2.valueů  
-
-
 
   const handleData = (data, source) => {
     switch (source) {
@@ -114,8 +107,7 @@ function App() {
         setText(data)
         break
       }
-   
-      
+
       default:
         break
     }
@@ -126,8 +118,6 @@ function App() {
     switch (source) {
        case "btn-Addition":
         {
-          
-          /* setAddition() */
           break;
         }
 
@@ -147,23 +137,14 @@ function App() {
     const num1 = parseFloat(text1);
     const num2 = parseFloat(text2);
 
-   /*  if (isNaN(num1) || isNaN(num2)) {
-      alert("Prosím zadejte platné číslo.");
-      setS("Zadejte validni scitance a zmacknete tlacitko vypoctu.")
-      return;
-    } */
-
     if (!validateFloat(text1) || !validateFloat(text2)) {
       alert("Prosím zadejte platné číslo.");
       setS("Zadejte validní sčítance a zmačkněte tlačítko výpočtu.")
       return;
     }
 
-
-    /* setResult(num1 + num2); */
-
     const sum = num1 + num2;
-    /* setResult(sum); */
+
     setS("Součet je: " + sum.toString())
   };
 
@@ -175,8 +156,8 @@ function App() {
         <div className="row p-4" id ="d3">
           <div className="col-6">
            
-           <p>
-              {additives} {checkboxes} {scoops} kopečky {cream}
+           <p id="p1">
+              <b>{additives} {checkboxes},{scoops} x kopeček,  {cream}</b>
             </p>
 
             <RbGroup
@@ -196,15 +177,15 @@ function App() {
               id = "ch-checkboxes"
               dataIn ={[
                 {label: "kousky oříšků", value:"s kousky oříšků "},
-                {label: "čoko hoblinky", value:"s čoko hoblinky "},
-                {label: "karamelové křupinky", value:"s karamelové křupinky "},
+                {label: "čoko hoblinky", value:"s čoko hoblinkami "},
+                {label: "karamelové křupinky", value:"s karamelovými křupinkami "},
               ]}
               selectedValue={checkboxes}
               handleData={handleData}
             />
             <br />
               <div className="col-12">
-                <NumImp
+                <NumImp  
                   label="Počet kopečků (max. 4)"
                   dataIn={scoops}
                   id="number-Scoops"
@@ -258,13 +239,8 @@ function App() {
             <br />
             <div className="row">
               <div className="col-6">
-                {/* <Button
-                  id="btn-Addition"
-                  label="Vypocitej soucet"
-                  handleEvent={handleEvent} 
-                ></Button> */}
-
-              <button onClick={handleSum}>Vypočítej součet</button>
+   
+              <button onClick={handleSum} id="btn-1"> Vypočítej součet </button>
 
               </div>
               <div className="col-6">
@@ -281,20 +257,25 @@ function App() {
             />
             <br />
             <div className="row">
-              <div className="col-6">
-                <File
-                  id="file-load"
-                  label="Načti text ze souboru"
-                  handleData={handleData}
-                />
+                <div className="col-6">
+                  <div className="file-wrapper">
+                    <File
+                      id="file-load"
+                      label="Načti text ze souboru"
+                      handleData={handleData}
+                    />
+                  </div>
+                </div>
+              <div className="col-6">     
+                <div className="button-wrapper">
+                  <Button
+                    id="btn-download"
+                    label="Stahni soubor s textem"
+                    handleEvent={handleEvent}
+                  ></Button>
+                </div>
               </div>
-              <div className="col-6">
-                <Button
-                  id="btn-download"
-                  label="Stahni soubor s textem"
-                  handleEvent={handleEvent}
-                ></Button>
-              </div>
+
             </div>
        
           </div>
